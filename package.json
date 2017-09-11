@@ -1,0 +1,26 @@
+{
+  "name": "social_workout_api",
+  "version": "1.0.0",
+  "description": "the web service for social workout app",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.4",
+    "mysql": "^2.14.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/danielhill13/social_workout_API.git"
+  },
+  "author": "Daniel Hill",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/danielhill13/social_workout_API/issues"
+  },
+  "homepage": "https://gitlab.com/danielhill13/social_workout_API#README"
+}
