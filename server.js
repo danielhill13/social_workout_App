@@ -1,11 +1,15 @@
 const   http            = require('http'),
         express         = require('express'),
+        app             = express(),
         mysql           = require('mysql'),
         parser          = require('body-parser'),
         indexRoutes     = require('./routes/index'),
         activityRoutes  = require('./routes/activity');
 //Load environment variables
 require('dotenv').config();
+
+//remove prior to release!!!!!!!!!!!
+app.set("view engine", "ejs");
 
 
 //Connect to database
@@ -22,7 +26,6 @@ connection.connect(function(err){
 })
 
 //Express setup
-const app = express();
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true}));
 app.set('port', process.env.PORT);
@@ -30,6 +33,9 @@ app.set('port', process.env.PORT);
 //Home route
 app.get('/', function(req, res){
     res.send("Welcome to the social workout app homepage");
+})
+app.get('/activity1', function(req, res){
+    res.render('newactivity');
 })
 
 //This is the right syntax for insert
