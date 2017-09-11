@@ -4,6 +4,7 @@
   "description": "the web service for social workout app",
   "main": "server.js",
   "dependencies": {
+    "async": "^2.5.0",
     "body-parser": "^1.18.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
