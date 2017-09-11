@@ -1,0 +1,1 @@
+This is the RESTful service repository for the Social Workout application.
