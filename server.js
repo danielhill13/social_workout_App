@@ -3,6 +3,7 @@ const   http            = require('http'),
         app             = express(),
         mysql           = require('mysql'),
         parser          = require('body-parser'),
+        methodOverride  = require("method-override"),
         indexRoutes     = require("./routes/index"),
         activityRoutes  = require("./routes/activity"),
         db      = require("./db");
@@ -21,6 +22,8 @@ db.connect(function(err){
 //Express setup
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true}));
+app.use(methodOverride("_method"));
+
 app.set('port', process.env.PORT);
 
 //Home route
