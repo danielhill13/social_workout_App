@@ -2,27 +2,24 @@ const   express         = require('express'),
         router          = express.Router()
         db           = require('../db');
 
-//INDEX
+//INDEX of ALL activities
 router.get('/', function(req, res){
         db.query('SELECT * FROM activity', function(err, rows){
         if(err) {
-            res.status(500).json({"Error":err});
-        } else if(rows.length) {
-        //     res.status(200).json({"Data":rows});
-            res.render('activities', {"Data": rows});
-        } else
-            res.status(200).json({"Data":"No records found"});
-    })
-//     res.render('activities');
+                throw err;
+        } else {
+                obj = {activities : rows};
+                res.render('activities', obj);
+        }
 })
-//ADD page is for testing only. Will remove and put in front end repo for actual release
+})
+//ADD page is for testing only.
 router.get('/add', function(req, res){
         res.render('newactivity');
         })
 //Need to add middleware for authentication
 router.post('/', function(req, res){
         var response = [];
-
         if (
                 typeof req.body.title !== 'undefined' &&
                 typeof req.body.description !== 'undefined'
@@ -34,7 +31,6 @@ router.post('/', function(req, res){
                         thursday = false,
                         friday = false,
                         saturday = false;
-
                 var     title = req.body.title,
                         description = req.body.description,
                         address = req.body.address,
@@ -65,15 +61,23 @@ router.post('/', function(req, res){
                 var     starttime = req.body.starttime,
                         duration = req.body.duration
                 }
-
-                        // starttime = req.body.starttime,
-                        // duration = req.body.duration,
-                        // created = Date.now
-        console.log(title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration)
+        // console.log(title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration)
         db.query("INSERT INTO activity (Title, Description, Address, City, State, Zip, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, StartTime, Duration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration])
 })
-
+//SHOW One Activity Details
+router.get("/:id", function(req, res){
+        db.query("SELECT * FROM activity where id = '" + req.params.id + "'",
+        function(err, row){
+                if(err) {
+                        throw err;
+                } else {
+                        // activity = JSON.stringify(row);
+                        console.log(row);
+                        res.render('activity', {activity: row});
+                }
+        })
+        })
 
 
 

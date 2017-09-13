@@ -1,13 +1,21 @@
 <h1>Activities Index</h1>
-<tr>
-    <th>Activity</th>
-    <th>Description</th>
-    <th>Start Time</th>
-</tr>
-<% rows.forEach(function(row){ %>
-<tr>
-    <td><%=row.Title%></td>
-    <td><%=row.Description%></td>
-    <td><%=row.Address%></td>
-</tr>
-<%});%>
+<style>
+    td, th {
+        border: 1px solid black;
+    }
+</style>
+<table>
+
+    <tr>
+        <th>Activity</th>
+        <th>Description</th>
+        <th>Start Time</th>
+    </tr>
+    <% activities.forEach(function(activity){ %>
+        <tr>
+            <td><%=activity.Title%></td>
+            <td><%=activity.Description%></td>
+            <td><%=activity.Address%></td>
+        </tr>
+        <%});%>
+    </table>
