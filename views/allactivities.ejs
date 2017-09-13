@@ -1,0 +1,46 @@
+<h1>Activities Index</h1>
+<style>
+    td, th {
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+<table>
+
+    <tr>
+        <th>Activity</th>
+        <th>Description</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+        <th>Start Time</th>
+        <th>Duration</th>
+    </tr>
+    <% activities.forEach(function(activity){ %>
+        <tr>
+            <td><%=activity.Title%></td>
+            <td><%=activity.Description%></td>
+            <td><%=activity.Address%></td>
+            <td><%=activity.City%></td>
+            <td><%=activity.State%></td>
+            <td><%=activity.Zip%></td>
+            <td><%=activity.Sunday%></td>
+            <td><%=activity.Monday%></td>
+            <td><%=activity.Tuesday%></td>
+            <td><%=activity.Wednesday%></td>
+            <td><%=activity.Thursday%></td>
+            <td><%=activity.Friday%></td>
+            <td><%=activity.Saturday%></td>
+            <td><%=activity.StartTime%></td>
+            <td><%=activity.Duration%></td>
+        </tr>
+        <%});%>
+    </table>

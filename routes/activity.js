@@ -9,7 +9,7 @@ router.get('/', function(req, res){
                 throw err;
         } else {
                 obj = {activities : rows};
-                res.render('activities', obj);
+                res.render('allactivities', obj);
         }
 })
 })
@@ -145,5 +145,11 @@ router.put('/:id', function(req, res){
 // var query = 'UPDATE employee SET profile_name = ?, phone =?, .. WHERE id=?';
 
 // connection.query(query,[req.name,req.phone,...,req.id] function (error, result, rows, fields) {
+
+
+//DELETE ROUTE
+router.delete("/:id",  function(req, res){
+        db.query("DELETE FROM activity WHERE id='"+req.params.id+"'");res.redirect('/');
+})
 
 module.exports = router;
