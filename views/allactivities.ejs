@@ -26,7 +26,7 @@
     </tr>
     <% activities.forEach(function(activity){ %>
         <tr>
-            <td><%=activity.Title%></td>
+            <td><a href="/activity/<%=activity.ID%>/edit"><%=activity.Title%></a></td>
             <td><%=activity.Description%></td>
             <td><%=activity.Address%></td>
             <td><%=activity.City%></td>
