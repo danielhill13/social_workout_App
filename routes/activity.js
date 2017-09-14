@@ -136,10 +136,10 @@ router.put('/:id', function(req, res){
         console.log(title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration);
                 var updateQuery = "UPDATE activity SET Title = ?, Description = ?, Address = ?, City = ?, State = ?, Zip = ?, Sunday = ?, Monday = ?, Tuesday = ?, Wednesday = ?, Thursday = ?, Friday = ?, Saturday = ?, StartTime = ?, Duration = ? WHERE id = '"+req.params.id+"'";
                 db.query(updateQuery, [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration])
-                res.redirect('/activity/'+req.params.id);
+                res.redirect('/activity');
         } else  {
                 console.log("You Must add a title and description");
-                res.redirect('/activity/'+req.params.id);
+                res.redirect('/activity');
         }
 })
 // var query = 'UPDATE employee SET profile_name = ?, phone =?, .. WHERE id=?';
