@@ -1,7 +1,6 @@
 const   express         = require('express'),
         router          = express.Router()
         db           = require('../db');
-
 //INDEX of ALL activities
 router.get('/', function(req, res){
         db.query('SELECT * FROM activity', function(err, rows){
@@ -23,20 +22,22 @@ router.post('/', function(req, res){
         if (
                 req.body.title &&
                 req.body.description
-        ) {
+        ) {                
                 var     sunday = false,
                         monday = false,
                         tuesday = false,
                         wednesday = false,
                         thursday = false,
                         friday = false,
-                        saturday = false;
-                var     title = req.body.title,
+                        saturday = false,
+                        title = req.body.title,
                         description = req.body.description,
                         address = req.body.address,
                         city = req.body.city,
                         state = req.body.state,
-                        zip = req.body.zip;
+                        zip = req.body.zip,
+                        starttime = req.body.starttime,
+                        duration = req.body.duration;
                 if (req.body.Sunday){
                         sunday = true;
                 }
@@ -49,7 +50,7 @@ router.post('/', function(req, res){
                 if (req.body.Wednesday){
                         wednesday = true;
                 }
-                if (req.body.thursday){
+                if (req.body.Thursday){
                         thursday = true;
                 }
                 if (req.body.Friday){
@@ -58,11 +59,10 @@ router.post('/', function(req, res){
                 if (req.body.Saturday){
                         saturday = true;
                 }
-                var     starttime = req.body.starttime,
-                        duration = req.body.duration
-                // console.log(title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration)
+                var freshActivity = [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration];
                 db.query("INSERT INTO activity (Title, Description, Address, City, State, Zip, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, StartTime, Duration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration])
+                freshActivity)
+                res.redirect('/activity');
                 } else {
                         console.log("You Must add a title and description");
                         res.redirect('/activity/add');
@@ -103,13 +103,15 @@ router.put('/:id', function(req, res){
                         wednesday = false,
                         thursday = false,
                         friday = false,
-                        saturday = false;
-                var     title = req.body.title,
+                        saturday = false,
+                        title = req.body.title,
                         description = req.body.description,
                         address = req.body.address,
                         city = req.body.city,
                         state = req.body.state,
-                        zip = req.body.zip;
+                        zip = req.body.zip,
+                        starttime = req.body.starttime,
+                        duration = req.body.duration;
                 if (req.body.Sunday){
                         sunday = true;
                 }
@@ -131,25 +133,17 @@ router.put('/:id', function(req, res){
                 if (req.body.Saturday){
                         saturday = true;
                 }
-                var     starttime = req.body.starttime,
-                        duration = req.body.duration;
-        console.log(title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration);
+                var freshActivity = [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration];                
                 var updateQuery = "UPDATE activity SET Title = ?, Description = ?, Address = ?, City = ?, State = ?, Zip = ?, Sunday = ?, Monday = ?, Tuesday = ?, Wednesday = ?, Thursday = ?, Friday = ?, Saturday = ?, StartTime = ?, Duration = ? WHERE id = '"+req.params.id+"'";
-                db.query(updateQuery, [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration])
+                db.query(updateQuery, freshActivity)
                 res.redirect('/activity');
         } else  {
                 console.log("You Must add a title and description");
                 res.redirect('/activity');
         }
 })
-// var query = 'UPDATE employee SET profile_name = ?, phone =?, .. WHERE id=?';
-
-// connection.query(query,[req.name,req.phone,...,req.id] function (error, result, rows, fields) {
-
-
 //DELETE ROUTE
 router.delete("/:id",  function(req, res){
         db.query("DELETE FROM activity WHERE id='"+req.params.id+"'");res.redirect('/');
 })
-
 module.exports = router;
