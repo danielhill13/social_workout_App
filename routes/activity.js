@@ -1,6 +1,8 @@
 const   express         = require('express'),
         router          = express.Router()
         db           = require('../db');
+
+
 //INDEX of ALL activities
 router.get('/', function(req, res){
         db.query('SELECT * FROM activity', function(err, rows){
@@ -23,13 +25,14 @@ router.post('/', function(req, res){
                 req.body.title &&
                 req.body.description
         ) {                
-                var     sunday = false,
-                        monday = false,
-                        tuesday = false,
-                        wednesday = false,
-                        thursday = false,
-                        friday = false,
-                        saturday = false,
+                var     
+                        sunday = req.body.Sunday,
+                        monday = req.body.Monday,
+                        tuesday = req.body.Tuesday,
+                        wednesday = req.body.Wednesday,
+                        thursday = req.body.Thursday,
+                        friday = req.body.Friday,
+                        saturday = req.body.Saturday,
                         title = req.body.title,
                         description = req.body.description,
                         address = req.body.address,
@@ -38,27 +41,33 @@ router.post('/', function(req, res){
                         zip = req.body.zip,
                         starttime = req.body.starttime,
                         duration = req.body.duration;
-                if (req.body.Sunday){
-                        sunday = true;
-                }
-                if (req.body.Monday){
-                        monday = true;
-                }
-                if (req.body.Tuesday){
-                        tuesday = true;
-                }
-                if (req.body.Wednesday){
-                        wednesday = true;
-                }
-                if (req.body.Thursday){
-                        thursday = true;
-                }
-                if (req.body.Friday){
-                        friday = true;
-                }
-                if (req.body.Saturday){
-                        saturday = true;
-                }
+                if (zip == ''){
+                        zip = null;
+                };
+                if (duration == ''){
+                        duration = null;
+                };
+                if(sunday == 'on'){
+                        sunday = 1;
+                } else sunday = 0;
+                if(monday == 'on'){
+                        monday = 1;
+                } else monday = 0;
+                if(tuesday == 'on'){
+                        tuesday = 1;
+                } else tuesday = 0;
+                if(wednesday == 'on'){
+                        wednesday = 1;
+                } else wednesday= 0;
+                if(thursday== 'on'){
+                        thursday = 1;
+                } else thursday= 0;
+                if(friday == 'on'){
+                        friday = 1;
+                } else friday = 0;
+                if(saturday == 'on'){
+                        saturday = 1;
+                } else saturday= 0;
                 var freshActivity = [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration];
                 db.query("INSERT INTO activity (Title, Description, Address, City, State, Zip, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, StartTime, Duration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 freshActivity)
@@ -97,13 +106,14 @@ router.put('/:id', function(req, res){
                 req.body.title &&
                 req.body.description
         ) {
-                var     sunday = false,
-                        monday = false,
-                        tuesday = false,
-                        wednesday = false,
-                        thursday = false,
-                        friday = false,
-                        saturday = false,
+                var     
+                        sunday = req.body.Sunday,
+                        monday = req.body.Monday,
+                        tuesday = req.body.Tuesday,
+                        wednesday = req.body.Wednesday,
+                        thursday = req.body.Thursday,
+                        friday = req.body.Friday,
+                        saturday = req.body.Saturday,
                         title = req.body.title,
                         description = req.body.description,
                         address = req.body.address,
@@ -112,27 +122,33 @@ router.put('/:id', function(req, res){
                         zip = req.body.zip,
                         starttime = req.body.starttime,
                         duration = req.body.duration;
-                if (req.body.Sunday){
-                        sunday = true;
-                }
-                if (req.body.Monday){
-                        monday = true;
-                }
-                if (req.body.Tuesday){
-                        tuesday = true;
-                }
-                if (req.body.Wednesday){
-                        wednesday = true;
-                }
-                if (req.body.Thursday){
-                        thursday = true;
-                }
-                if (req.body.Friday){
-                        friday = true;
-                }
-                if (req.body.Saturday){
-                        saturday = true;
-                }
+                if (zip == ''){
+                        zip = null;
+                };
+                if (duration == ''){
+                        duration = null;
+                };
+                if(sunday == 'on'){
+                        sunday = 1;
+                } else sunday = 0;
+                if(monday == 'on'){
+                        monday = 1;
+                } else monday = 0;
+                if(tuesday == 'on'){
+                        tuesday = 1;
+                } else tuesday = 0;
+                if(wednesday == 'on'){
+                        wednesday = 1;
+                } else wednesday= 0;
+                if(thursday== 'on'){
+                        thursday = 1;
+                } else thursday= 0;
+                if(friday == 'on'){
+                        friday = 1;
+                } else friday = 0;
+                if(saturday == 'on'){
+                        saturday = 1;
+                } else saturday= 0;
                 var freshActivity = [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration];                
                 var updateQuery = "UPDATE activity SET Title = ?, Description = ?, Address = ?, City = ?, State = ?, Zip = ?, Sunday = ?, Monday = ?, Tuesday = ?, Wednesday = ?, Thursday = ?, Friday = ?, Saturday = ?, StartTime = ?, Duration = ? WHERE id = '"+req.params.id+"'";
                 db.query(updateQuery, freshActivity)

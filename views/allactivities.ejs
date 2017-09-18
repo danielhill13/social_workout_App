@@ -10,6 +10,7 @@
 <table>
 
     <tr>
+        <th>ID</th>
         <th>Activity</th>
         <th>Description</th>
         <th>Address</th>
@@ -28,6 +29,7 @@
     </tr>
     <% activities.forEach(function(activity){ %>
         <tr>
+            <td><%=activity.ID%></a></td>
             <td><a href="/activity/<%=activity.ID%>/edit"><%=activity.Title%></a></td>
             <td><%=activity.Description%></td>
             <td><%=activity.Address%></td>
