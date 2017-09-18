@@ -69,9 +69,12 @@ router.post('/', function(req, res){
                         saturday = 1;
                 } else saturday= 0;
                 var freshActivity = [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration];
+
                 db.query("INSERT INTO activity (Title, Description, Address, City, State, Zip, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, StartTime, Duration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                freshActivity)
-                res.redirect('/activity');
+                freshActivity, function(error, results, fields){
+                        if (error) throw error;
+                        res.redirect('/activity');      
+                })
                 } else {
                         console.log("You Must add a title and description");
                         res.redirect('/activity/add');
@@ -122,44 +125,51 @@ router.put('/:id', function(req, res){
                         zip = req.body.zip,
                         starttime = req.body.starttime,
                         duration = req.body.duration;
-                if (zip == ''){
-                        zip = null;
-                };
-                if (duration == ''){
-                        duration = null;
-                };
-                if(sunday == 'on'){
-                        sunday = 1;
-                } else sunday = 0;
-                if(monday == 'on'){
-                        monday = 1;
-                } else monday = 0;
-                if(tuesday == 'on'){
-                        tuesday = 1;
-                } else tuesday = 0;
-                if(wednesday == 'on'){
-                        wednesday = 1;
-                } else wednesday= 0;
-                if(thursday== 'on'){
-                        thursday = 1;
-                } else thursday= 0;
-                if(friday == 'on'){
-                        friday = 1;
-                } else friday = 0;
-                if(saturday == 'on'){
-                        saturday = 1;
-                } else saturday= 0;
+                        if (zip == ''){
+                                zip = null;
+                        };
+                        if (duration == ''){
+                                duration = null;
+                        };
+                        if(sunday == 'on'){
+                                sunday = 1;
+                        } else sunday = 0;
+                        if(monday == 'on'){
+                                monday = 1;
+                        } else monday = 0;
+                        if(tuesday == 'on'){
+                                tuesday = 1;
+                        } else tuesday = 0;
+                        if(wednesday == 'on'){
+                                wednesday = 1;
+                        } else wednesday= 0;
+                        if(thursday== 'on'){
+                                thursday = 1;
+                        } else thursday= 0;
+                        if(friday == 'on'){
+                                friday = 1;
+                        } else friday = 0;
+                        if(saturday == 'on'){
+                                saturday = 1;
+                        } else saturday= 0;
                 var freshActivity = [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration];                
                 var updateQuery = "UPDATE activity SET Title = ?, Description = ?, Address = ?, City = ?, State = ?, Zip = ?, Sunday = ?, Monday = ?, Tuesday = ?, Wednesday = ?, Thursday = ?, Friday = ?, Saturday = ?, StartTime = ?, Duration = ? WHERE id = '"+req.params.id+"'";
-                db.query(updateQuery, freshActivity)
-                res.redirect('/activity');
-        } else  {
-                console.log("You Must add a title and description");
-                res.redirect('/activity');
-        }
+
+                db.query(updateQuery, freshActivity, function(error, results, fields){
+                        if (error) throw error;
+                        res.redirect('/activity');
+                        })
+                } else  {
+                        console.log("You Must add a title and description");
+                        res.redirect('/activity');
+                }
 })
 //DELETE ROUTE
 router.delete("/:id",  function(req, res){
-        db.query("DELETE FROM activity WHERE id='"+req.params.id+"'");res.redirect('/');
+        db.query("DELETE FROM activity WHERE id='"+req.params.id+"'", function(err){
+                if (err) throw err;
+                res.redirect('/activity');
+        });
+        
 })
 module.exports = router;
