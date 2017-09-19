@@ -4,6 +4,7 @@ const   http            = require('http'),
         mysql           = require('mysql'),
         parser          = require('body-parser'),
         methodOverride  = require("method-override"),
+        bcrypt          = require('bcryptjs'),
         indexRoutes     = require("./routes/index"),
         activityRoutes  = require("./routes/activity"),
         db      = require("./db");
@@ -23,6 +24,8 @@ db.connect(function(err){
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true}));
 app.use(methodOverride("_method"));
+app.use(express.static('public'));
+
 
 app.set('port', process.env.PORT);
 

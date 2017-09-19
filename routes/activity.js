@@ -10,13 +10,13 @@ router.get('/', function(req, res){
                 throw err;
         } else {
                 obj = {activities : rows};
-                res.render('allactivities', obj);
+                res.render('activities/allactivities', obj);
         }
 })
 })
 //ADD page is for testing only.
 router.get('/add', function(req, res){
-        res.render('newactivity');
+        res.render('activities/newactivity');
         })
 //Need to add middleware for authentication
 router.post('/', function(req, res){
@@ -88,7 +88,7 @@ router.get("/:id", function(req, res){
                         throw err;
                 } else {
                         // console.log(row);
-                        res.render('activity', {activity: row});
+                        res.render('activities/activity', {activity: row});
                 }
         })
         })
@@ -99,7 +99,7 @@ router.get("/:id/edit", function(req, res){
                 if(err) {
                         throw err;
                 } else {
-                        res.render('activityedit', {activity: row});
+                        res.render('activities/activityedit', {activity: row});
                 }
         })
 })

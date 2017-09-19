@@ -1,5 +1,4 @@
-<h1>Edit Activity</h1>
-<% include ./header %>
+<% include ../partials/header %>
 
 <form action="/activity/<%=activity[0].ID %>?_method=PUT" method="POST">
     <label for="title">Title</label><br>
@@ -117,3 +116,7 @@
 <form action="/activity/<%=activity[0].ID %>?_method=DELETE" method="POST">
 <input type="submit" value="Delete">
 </form>
+
+
+
+<% include ../partials/footer %>

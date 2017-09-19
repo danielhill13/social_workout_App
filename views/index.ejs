@@ -1,9 +1,38 @@
-<h1>Social Workout API</h1>
-<% include ./header %>
+<% include ./partials/header %>
 
 <p>Welcome to the social workout app homepage</p>
 
-<ul>
-    <li><a href="/activity/add">Add Activity</a></li>
-    <li><a href="/activity">View Activities</a></li>
-</ul>
+<div id='homejumbotron'>
+  <div id='searchactivities'>
+      <form method='GET'>
+          <label for="city"><p>Where do you wanna workout?</p></label>
+          <input id='mainsearch' class="form-control"type="text" name='city' placeholder='e.g. Miami, Dallas'>
+      <input type="submit" class='btn btn-sm btn-primary'>
+      </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+<div class='panel panel-default'>
+<div class="panel-heading">Workouts near San Diego:</div>
+<table class='table'>
+  <tr>
+    <td>Rugby</td>
+    <td>7:30 PM</td>
+    <td>Tu,Th</td>
+  </tr>
+  <tr>
+    <td>Running</td>
+    <td>6:00 AM</td>
+    <td>Mo,Tu,We,Th,Fr</td>
+  </tr>
+  <tr>
+    <td>Basketball</td>
+    <td>9:00 AM</td>
+    <td>Sa,Su</td>
+  </tr>
+</table>
+
+<% include ./partials/footer %>

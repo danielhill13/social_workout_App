@@ -1,10 +1,4 @@
-<h1>Activities Detail</h1>
-<style>
-    td, th {
-        border: 1px solid black;
-    }
-</style>
-<% include ./header %>
+<% include ../partials/header %>
 
 <li><%=activity[0].Title%></li>
 <li><%=activity[0].Description%></li>
@@ -39,3 +33,6 @@
 <li><%=activity[0].StartTime%></li>
 <li>We go for <%=activity[0].Duration%> Minutes</li>
     
+
+
+<% include ../partials/footer %>

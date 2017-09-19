@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "async": "^2.5.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.1",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.7",

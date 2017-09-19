@@ -1,0 +1,35 @@
+body, html {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+#body {
+    height: 100%;
+    width: 100%;
+}
+.navbar, .navbar-default {
+    margin-bottom: 0px;
+}
+#homejumbotron {
+    background-image: url('https://c1.staticflickr.com/9/8441/7876205694_65bff56473_b.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+ #searchactivities {
+    margin: 0 auto;
+    height: auto;
+    width: 85%;
+    opacity: 0.7 #D67B7B;;
+    /* border: 3px solid red; */
+    position: relative;
+    text-align: center;
+    color: whitesmoke;
+}
+
+#mainsearch {
+    margin-bottom: 10px;
+}
