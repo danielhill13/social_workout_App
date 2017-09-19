@@ -31,9 +31,15 @@ app.set('port', process.env.PORT);
 
 //Home route
 app.get('/', function(req, res){
-    res.render('index');
+        db.query('SELECT * FROM activity', function(err, rows){
+        if(err) {
+            throw err;
+        } else {
+            obj = {activities : rows};
+            res.render('index', obj);
+        }
 })
-
+})
 
 //This is the right syntax for insert
 // connection.query("INSERT INTO user (FirstName, LastName, Username, email) VALUES ('Ricky', 'Bobby', 'ShakeNBake', 'ricky@bobby.com')")

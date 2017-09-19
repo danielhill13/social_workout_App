@@ -1,6 +1,6 @@
 <% include ./partials/header %>
 
-<p>Welcome to the social workout app homepage</p>
+<h2>Welcome to the social workout app homepage</h2>
 
 <div id='homejumbotron'>
   <div id='searchactivities'>
@@ -16,23 +16,18 @@
     <br>
 </div>
 <div class='panel panel-default'>
-<div class="panel-heading">Workouts near San Diego:</div>
-<table class='table'>
-  <tr>
-    <td>Rugby</td>
-    <td>7:30 PM</td>
-    <td>Tu,Th</td>
-  </tr>
-  <tr>
-    <td>Running</td>
-    <td>6:00 AM</td>
-    <td>Mo,Tu,We,Th,Fr</td>
-  </tr>
-  <tr>
-    <td>Basketball</td>
-    <td>9:00 AM</td>
-    <td>Sa,Su</td>
-  </tr>
-</table>
+<div class="panel-heading">Workouts near you:</div>
+<ul class='list-group'>
+      <% activities.forEach(function(activity){ %>
+            <a href="/activity/<%=activity.ID%>">
+              <li class='list-group-item'>
+              <%=activity.Title%> at 
+              <%=activity.City%> at 
+              <%=activity.StartTime%>
+            </li></a>
+        </tr>
+        <%});%>
+      </ul>
+</div>
 
 <% include ./partials/footer %>

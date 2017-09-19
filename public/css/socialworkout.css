@@ -33,3 +33,10 @@ body, html {
 #mainsearch {
     margin-bottom: 10px;
 }
+.activityindexrow td {
+    border: 1px solid black;
+    text-align: center;
+}
+.activityindex {
+    max-width: 90%;
+}
