@@ -7,7 +7,7 @@ const   http            = require('http'),
         bcrypt          = require('bcryptjs'),
         indexRoutes     = require("./routes/index"),
         activityRoutes  = require("./routes/activity"),
-        db      = require("./db");
+        pool      = require("./db");
 //Load environment variables
 require('dotenv').config();
 
@@ -15,10 +15,10 @@ require('dotenv').config();
 app.set("view engine", "ejs");
 
 //Connect to database
-db.connect(function(err){
-    if(err) throw err
-        console.log("You are connected to the database");
-})
+// db.connect(function(err){
+//     if(err) throw err
+//         console.log("You are connected to the database");
+// })
 
 //Express setup
 app.use(parser.json());
@@ -31,7 +31,7 @@ app.set('port', process.env.PORT);
 
 //Home route
 app.get('/', function(req, res){
-        db.query('SELECT * FROM activity', function(err, rows){
+        pool.query('SELECT * FROM activity', function(err, rows){
         if(err) {
             throw err;
         } else {

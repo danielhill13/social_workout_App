@@ -1,11 +1,11 @@
 const   express         = require('express'),
         router          = express.Router()
-        db           = require('../db');
+        pool           = require('../db');
 
 
 //INDEX of ALL activities
 router.get('/', function(req, res){
-        db.query('SELECT * FROM activity', function(err, rows){
+        pool.query('SELECT * FROM activity', function(err, rows){
         if(err) {
                 throw err;
         } else {
@@ -70,7 +70,7 @@ router.post('/', function(req, res){
                 } else saturday= 0;
                 var freshActivity = [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration];
 
-                db.query("INSERT INTO activity (Title, Description, Address, City, State, Zip, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, StartTime, Duration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                pool.query("INSERT INTO activity (Title, Description, Address, City, State, Zip, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, StartTime, Duration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 freshActivity, function(error, results, fields){
                         if (error) throw error;
                         res.redirect('/activity');      
@@ -82,7 +82,7 @@ router.post('/', function(req, res){
 })
 //SHOW One Activity Details
 router.get("/:id", function(req, res){
-        db.query("SELECT * FROM activity where id = '" + req.params.id + "'",
+        pool.query("SELECT * FROM activity where id = '" + req.params.id + "'",
         function(err, row){
                 if(err) {
                         throw err;
@@ -94,7 +94,7 @@ router.get("/:id", function(req, res){
         })
 //EDIT Page
 router.get("/:id/edit", function(req, res){
-        db.query("SELECT * FROM activity where id = '" + req.params.id + "'",
+        pool.query("SELECT * FROM activity where id = '" + req.params.id + "'",
         function(err, row){
                 if(err) {
                         throw err;
@@ -155,7 +155,7 @@ router.put('/:id', function(req, res){
                 var freshActivity = [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration];                
                 var updateQuery = "UPDATE activity SET Title = ?, Description = ?, Address = ?, City = ?, State = ?, Zip = ?, Sunday = ?, Monday = ?, Tuesday = ?, Wednesday = ?, Thursday = ?, Friday = ?, Saturday = ?, StartTime = ?, Duration = ? WHERE id = '"+req.params.id+"'";
 
-                db.query(updateQuery, freshActivity, function(error, results, fields){
+                pool.query(updateQuery, freshActivity, function(error, results, fields){
                         if (error) throw error;
                         res.redirect('/activity');
                         })
@@ -166,7 +166,7 @@ router.put('/:id', function(req, res){
 })
 //DELETE ROUTE
 router.delete("/:id",  function(req, res){
-        db.query("DELETE FROM activity WHERE id='"+req.params.id+"'", function(err){
+        pool.query("DELETE FROM activity WHERE id='"+req.params.id+"'", function(err){
                 if (err) throw err;
                 res.redirect('/activity');
         });
