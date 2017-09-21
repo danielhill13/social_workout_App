@@ -10,13 +10,7 @@
         <th>City</th>
         <th>State</th>
         <th>Zip</th>
-        <th>Sunday</th>
-        <th>Monday</th>
-        <th>Tuesday</th>
-        <th>Wednesday</th>
-        <th>Thursday</th>
-        <th>Friday</th>
-        <th>Saturday</th>
+        <th>Days</th>
         <th>Start Time</th>
         <th>Duration</th>
     </tr>
@@ -29,14 +23,32 @@
             <td><%=activity.City%></td>
             <td><%=activity.State%></td>
             <td><%=activity.Zip%></td>
-            <td><%=activity.Sunday%></td>
-            <td><%=activity.Monday%></td>
-            <td><%=activity.Tuesday%></td>
-            <td><%=activity.Wednesday%></td>
-            <td><%=activity.Thursday%></td>
-            <td><%=activity.Friday%></td>
-            <td><%=activity.Saturday%></td>
-            <td><%=activity.StartTime%></td>
+            <% var whatDays = []; %>
+                    <%if(activity.Sunday == 1){%>
+                    <% whatDays.push('Su'); %>
+                    <%}%>
+                    <%if(activity.Monday == 1){%>
+                    <% whatDays.push('Mo'); %>
+                    <%}%>
+                    <%if(activity.Tuesday == 1){%>
+                    <% whatDays.push('Tu'); %>
+                    <%}%>
+                    <%if(activity.Wednesday == 1){%>
+                    <% whatDays.push('We'); %>
+                    <%}%>
+                    <%if(activity.Thursday == 1){%>
+                    <% whatDays.push('Th'); %>
+                    <%}%>
+                    <%if(activity.Friday == 1){%>
+                    <% whatDays.push('Fr'); %>
+                    <%}%>
+                    <%if(activity.Saturday == 1){%>
+                    <% whatDays.push('Sa'); %>
+                    <%}%>
+                    
+            <td><%=whatDays%></td>
+
+            <td id='starttime'><%=activity.StartTime%></td>
             <td><%=activity.Duration%></td>
         </tr>
         <%});%>

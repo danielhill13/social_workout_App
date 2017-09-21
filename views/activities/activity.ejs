@@ -1,36 +1,39 @@
 <% include ../partials/header %>
 
-<li><%=activity[0].Title%></li>
-<li><%=activity[0].Description%></li>
-<li><%=activity[0].Address%></li>
-<li><%=activity[0].City%></li>
-<li><%=activity[0].State%></li>
-<li><%=activity[0].Zip%></li>
-<li>We meet on...</li>
+<h2><%=activity[0].Title%></h2>
+<%=activity[0].Description%>
+<%=activity[0].Address%>
+<%=activity[0].City%>
+<%=activity[0].State%>
+<%=activity[0].Zip%>
+We meet on...
     <ul>
-        <%if(activity[0].Sunday){%>
-        <li>Sunday</li>
+        <% var whatDays = []; %>
+            <%if(activity[0].Sunday == 1){%>
+            <% whatDays.push('Sundays'); %>
+            <%}%>
+            <%if(activity[0].Monday == 1){%>
+            <% whatDays.push('Mondays'); %>
+            <%}%>
+            <%if(activity[0].Tuesday == 1){%>
+            <% whatDays.push('Tuesdays'); %>
+            <%}%>
+            <%if(activity[0].Wednesday == 1){%>
+            <% whatDays.push('Wednesdays'); %>
+            <%}%>
+            <%if(activity[0].Thursday == 1){%>
+            <% whatDays.push('Thursdays'); %>
+            <%}%>
+            <%if(activity[0].Friday == 1){%>
+            <% whatDays.push('Fridays'); %>
+            <%}%>
+            <%if(activity[0].Saturday == 1){%>
+            <% whatDays.push('Saturdays'); %>
         <%}%>
-        <%if(activity[0].Monday){%>
-        <li>Monday</li>
-        <%}%>
-        <%if(activity[0].Tuesday){%>
-        <li>Tuesday</li>
-        <%}%>
-        <%if(activity[0].Wednesday){%>
-        <li>Wednesday</li>
-        <%}%>
-        <%if(activity[0].Thursday){%>
-        <li>Thursday</li>
-        <%}%>
-        <%if(activity[0].Friday){%>
-        <li>Friday</li>
-        <%}%>
-        <%if(activity[0].Saturday){%>
-        <li>Saturday</li>
-        <%}%>
+        <li><%=whatDays%></li>
     </ul>
-<li><%=activity[0].StartTime%></li>
+    
+<p>We start at <span id='starttime'><%=activity[0].StartTime%></span></p>
 <li>We go for <%=activity[0].Duration%> Minutes</li>
     
 
