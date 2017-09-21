@@ -1,6 +1,7 @@
 const   express         = require('express'),
-        router          = express.Router()
-        pool           = require('../db');
+        router          = express.Router(),
+        pool            = require('../db'),
+        moment          = require('moment');
 
 //INDEX of ALL activities
 router.get('/', function(req, res){
@@ -10,6 +11,7 @@ router.get('/', function(req, res){
         } else {
                 res.render('activities/allactivities', {
                         activities : rows,
+                        moment  :  moment
                 });
 }
 })
@@ -88,7 +90,10 @@ router.get("/:id", function(req, res){
                         throw err;
                 } else {
                         // console.log(row);
-                        res.render('activities/activity', {activity: row});
+                        res.render('activities/activity', {
+                                activity: row,
+                                moment : moment
+                        });
                 }
         })
         })

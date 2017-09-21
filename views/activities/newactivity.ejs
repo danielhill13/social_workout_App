@@ -1,16 +1,26 @@
 <% include ../partials/header %>
 
 <form action="/activity" method="POST">
-    <label for="title">Title</label><br>
-    <input type="text" name="title"><br>
-    <label for="description">Activity Description</label><br>
-    <textarea name="description" id="" cols="30" rows="10"></textarea><br>
-  <label for="address">Address</label><br>
-    <input type="text" name ="address"><br>
-    <label for="city">City</label><br>
-    <input type="text" name ="city"><br>
-    <label for="state">State</label><br>
-    <select name="state">
+  <div class='form-group'>
+    <label for="title">Title</label>
+    <input type="text" class='form-control'name="title">
+</div>
+    <div class='form-group'>
+    <label for="description">Activity Description</label>
+    <textarea name="description" class='form-control'id="" cols="25" rows="5"></textarea>
+    </div>
+    <div class='form-group'>
+    <label for="address">Address</label>
+    <input type="text" class='form-control'name ="address">
+</div>
+    <div class='form-group'>
+    <label for="city">City</label>
+    <input type="text" class='form-control'name ="city">
+</div>
+    <div class='form-group'>
+
+    <label for="state">State</label>
+    <select class='form-control' name="state">
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
@@ -62,21 +72,44 @@
             <option value="WV">West Virginia</option>
             <option value="WI">Wisconsin</option>
             <option value="WY">Wyoming</option>
-        </select><br>
-    <label for="zip">Zip</label><br>
-    <input type="number" name='zip'><br>
-    <label for="day">Days you play (for ongoing activities)</label><br>
-     <input type="checkbox" name='Sunday'>Sunday<br>
-     <input type="checkbox" name='Monday'>Monday<br>
-     <input type="checkbox" name='Tuesday'>Tuesday<br>
-     <input type="checkbox" name='Wednesday'>Wednesday<br>
-     <input type="checkbox" name='Thursday'>Thursday<br>
-     <input type="checkbox" name='Friday'>Friday<br>
-     <input type="checkbox" name='Saturday'>Saturday<br>
-    <label for="starttime">Start Time</label><br>
-    <input type="time" name ="starttime"><br>
-    <label for="duration">Activity Duration (minutes)</label><br>
-    <input type="number" name ="duration"><br>
+        </select>
+    </div>
+    <div class='form-group'>
+    <label for="zip">Zip</label>
+    <input class='form-control'type="number" name='zip'>
+</div>
+
+    <label for="day">Days you play (for ongoing activities)</label>
+        <div class='form-group'>
+     <input type="checkbox" name='Sunday'> Sunday
+    </div>
+        <div class='form-group'>
+     <input type="checkbox" name='Monday'> Monday
+    </div>
+        <div class='form-group'>
+     <input type="checkbox" name='Tuesday'> Tuesday
+    </div>
+        <div class='form-group'>
+     <input type="checkbox" name='Wednesday'> Wednesday
+    </div>
+        <div class='form-group'>
+     <input type="checkbox" name='Thursday'> Thursday
+    </div>
+        <div class='form-group'>
+     <input type="checkbox" name='Friday'> Friday
+    </div>
+        <div class='form-group'>
+     <input type="checkbox" name='Saturday'> Saturday
+    </div>
+        <div class='form-group'>
+    <label for="starttime">Start Time</label>
+    <input class='form-control'type="time" name ="starttime">
+</div>
+    <div class='form-group'>
+
+    <label for="duration">Activity Duration (minutes)</label>
+    <input class='form-control'type="number" name ="duration">
+    </div>
 
     <input type="submit">
 </form>

@@ -1,13 +1,13 @@
 <% include ../partials/header %>
 
-<h2><%=activity[0].Title%></h2>
-<%=activity[0].Description%>
-<%=activity[0].Address%>
-<%=activity[0].City%>
-<%=activity[0].State%>
-<%=activity[0].Zip%>
-We meet on...
-    <ul>
+<div class='panel panel-default'>
+
+<div class='panel-heading'><%=activity[0].Title%></div>
+<div class='list-group-item'><%=activity[0].Description%></div>
+<div class='list-group-item'><%=activity[0].Address%></div>
+<div class='list-group-item'><%=activity[0].City%> <%=activity[0].State%> <%=activity[0].Zip%></div>
+<div class='panel-heading'>We meet...</div>
+<div class='list-group-item'>
         <% var whatDays = []; %>
             <%if(activity[0].Sunday == 1){%>
             <% whatDays.push('Sundays'); %>
@@ -30,12 +30,14 @@ We meet on...
             <%if(activity[0].Saturday == 1){%>
             <% whatDays.push('Saturdays'); %>
         <%}%>
-        <li><%=whatDays%></li>
-    </ul>
+        <%=whatDays%>
+</div>
     
-<p>We start at <span id='starttime'><%=activity[0].StartTime%></span></p>
-<li>We go for <%=activity[0].Duration%> Minutes</li>
-    
+<div class='list-group-item'>We start at <%=moment(activity[0].StartTime, "HH:mm:ss").format('h:mma')%></div>
+<div class='list-group-item'>We go for <%=activity[0].Duration%> Minutes</div>
+</div>
+
+<p><a href="/activity/<%=activity[0].ID%>/edit">Edit</a></p>
 
 
 <% include ../partials/footer %>

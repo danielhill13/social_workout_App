@@ -5,6 +5,7 @@ const   http            = require('http'),
         parser          = require('body-parser'),
         methodOverride  = require("method-override"),
         bcrypt          = require('bcryptjs'),
+        moment          = require('moment'),
         indexRoutes     = require("./routes/index"),
         activityRoutes  = require("./routes/activity"),
         pool      = require("./db");
@@ -35,8 +36,10 @@ app.get('/', function(req, res){
         if(err) {
             throw err;
         } else {
-            obj = {activities : rows};
-            res.render('index', obj);
+            res.render('index', {
+                activities : rows,
+            moment : moment 
+            });
         }
 })
 })
