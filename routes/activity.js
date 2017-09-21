@@ -2,18 +2,18 @@ const   express         = require('express'),
         router          = express.Router()
         pool           = require('../db');
 
-
 //INDEX of ALL activities
 router.get('/', function(req, res){
         pool.query('SELECT * FROM activity', function(err, rows){
         if(err) {
                 throw err;
         } else {
-                obj = {activities : rows};
-                res.render('activities/allactivities', obj);
-        }
+                res.render('activities/allactivities', {
+                        activities : rows,
+                });
+}
 })
-})
+});
 //ADD page is for testing only.
 router.get('/add', function(req, res){
         res.render('activities/newactivity');
