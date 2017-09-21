@@ -3,26 +3,18 @@
 <div class="panel-heading">Workouts near San Diego:</div>
 <table class='table'>
     <tr>
-        <th>ID</th>
         <th>Activity</th>
-        <th>Description</th>
-        <th>Address</th>
-        <th>City</th>
-        <th>State</th>
-        <th>Zip</th>
+        <th class="fullsite">Description</th>
+        <th class="fullsite">Where</th>
         <th>Days</th>
         <th>Start Time</th>
-        <th>Duration</th>
+        <th class="fullsite">Duration</th>
     </tr>
     <% activities.forEach(function(activity){ %>
         <tr>
-            <td><%=activity.ID%></a></td>
-            <td><a href="/activity/<%=activity.ID%>/edit"><%=activity.Title%></a></td>
-            <td><%=activity.Description%></td>
-            <td><%=activity.Address%></td>
-            <td><%=activity.City%></td>
-            <td><%=activity.State%></td>
-            <td><%=activity.Zip%></td>
+            <td><a href="/activity/<%=activity.ID%>"><%=activity.Title%></a></td>
+            <td class="fullsite"><%=activity.Description%></td>
+            <td class="fullsite"><%=activity.City%> <%=activity.State%></td>
             <% var whatDays = []; %>
                     <%if(activity.Sunday == 1){%>
                     <% whatDays.push('Su'); %>
@@ -48,8 +40,8 @@
                     
             <td><%=whatDays%></td>
 
-            <td id='starttime'><%=activity.StartTime%></td>
-            <td><%=activity.Duration%></td>
+            <td><%=moment(activity.StartTime, "HH:mm:ss").format('h:mma')%></td>
+            <td class="fullsite"><%=activity.Duration%></td>
         </tr>
         <%});%>
     </table>

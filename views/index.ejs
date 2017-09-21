@@ -23,7 +23,7 @@
               <li class='list-group-item'>
               <%=activity.Title%> at 
               <%=activity.City%> at 
-              <%=activity.StartTime%>
+             <%=moment(activity.StartTime, "HH:mm:ss").format('h:mma')%>
             </li></a>
         </tr>
         <%});%>

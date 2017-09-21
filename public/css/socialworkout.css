@@ -39,3 +39,9 @@ body, html {
 .activityindex {
     max-width: 90%;
 }
+@media (max-width: 767px) {
+.fullsite {
+    display: none;
+}
+
+}
