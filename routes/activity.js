@@ -71,9 +71,8 @@ router.post('/', function(req, res){
                         saturday = 1;
                 } else saturday= 0;
                 var freshActivity = [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration];
-
-                pool.query("INSERT INTO activity (Title, Description, Address, City, State, Zip, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, StartTime, Duration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                freshActivity, function(error, results, fields){
+                var newactivity = "INSERT INTO activity SET Title=?, Description=?, Address=?, City=?, State=?, Zip=?, Sunday=?, Monday=?, Tuesday=?, Wednesday=?, Thursday=?, Friday=?, Saturday=?, StartTime=?, Duration=?";
+                pool.query(newactivity, freshActivity, function(error, results, fields){
                         if (error) throw error;
                         res.redirect('/activity');      
                 })
@@ -84,7 +83,7 @@ router.post('/', function(req, res){
 })
 //SHOW One Activity Details
 router.get("/:id", function(req, res){
-        pool.query("SELECT * FROM activity where id = '" + req.params.id + "'",
+        pool.query("SELECT * FROM activity where id =?", [req.params.id],
         function(err, row){
                 if(err) {
                         throw err;
@@ -99,7 +98,7 @@ router.get("/:id", function(req, res){
         })
 //EDIT Page
 router.get("/:id/edit", function(req, res){
-        pool.query("SELECT * FROM activity where id = '" + req.params.id + "'",
+        pool.query("SELECT * FROM activity where id = ?", [req.params.id],
         function(err, row){
                 if(err) {
                         throw err;
@@ -168,10 +167,10 @@ router.put('/:id', function(req, res){
                         console.log("You Must add a title and description");
                         res.redirect('/activity');
                 }
-})
+        })
 //DELETE ROUTE
 router.delete("/:id",  function(req, res){
-        pool.query("DELETE FROM activity WHERE id='"+req.params.id+"'", function(err){
+        pool.query("DELETE FROM activity WHERE id=?", [req.params.id], function(err){
                 if (err) throw err;
                 res.redirect('/activity');
         });

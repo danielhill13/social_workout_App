@@ -44,8 +44,8 @@ app.get('/', function(req, res){
 })
 })
 app.post('/search', function(req, res){
-        var sql = "SELECT * FROM ?? WHERE ?? LIKE ?";
-        var inserts = ['activity', 'Title', req.body.search];
+        var sql = "SELECT * FROM ?? WHERE ?? OR ?? LIKE ?";
+        var inserts = ['activity', 'Title', 'Description', '%'+req.body.search+'%', ];
         sql = mysql.format(sql, inserts);
         pool.query(sql, function(err, rows){
                 if(err) {
