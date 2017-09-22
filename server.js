@@ -51,8 +51,6 @@ app.post('/search', function(req, res){
                 if(err) {
                         throw err;
                 } else {
-                    console.log(req.body.search);
-                    console.log(rows);
                         res.render('searchresults', {
                                 activities: rows,
                                 moment : moment
