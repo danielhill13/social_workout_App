@@ -177,4 +177,7 @@ router.delete("/:id",  function(req, res){
         });
         
 })
+
+//SEARCH
+
 module.exports = router;

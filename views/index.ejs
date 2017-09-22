@@ -4,9 +4,10 @@
 
 <div id='homejumbotron'>
   <div id='searchactivities'>
-      <form method='GET'>
-          <label for="city"><p>Where do you wanna workout?</p></label>
-          <input id='mainsearch' class="form-control"type="text" name='city' placeholder='e.g. Miami, Dallas'>
+      <form action="/search" method='POST'>
+          <br>
+          <label for="search"><p>Where do you wanna workout?</p></label>
+          <input id='mainsearch' class="form-control"type="text" name='search' placeholder='e.g. kickball, basketball'>
       <input type="submit" class='btn btn-sm btn-primary'>
       </form>
     </div>

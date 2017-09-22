@@ -8,7 +8,7 @@ const   http            = require('http'),
         moment          = require('moment'),
         indexRoutes     = require("./routes/index"),
         activityRoutes  = require("./routes/activity"),
-        pool      = require("./db");
+        pool            = require("./db");
 //Load environment variables
 require('dotenv').config();
 
@@ -43,7 +43,23 @@ app.get('/', function(req, res){
         }
 })
 })
-
+app.post('/search', function(req, res){
+        var sql = "SELECT * FROM ?? WHERE ?? LIKE ?";
+        var inserts = ['activity', 'Title', req.body.search];
+        sql = mysql.format(sql, inserts);
+        pool.query(sql, function(err, rows){
+                if(err) {
+                        throw err;
+                } else {
+                    console.log(req.body.search);
+                    console.log(rows);
+                        res.render('searchresults', {
+                                activities: rows,
+                                moment : moment
+                        })
+                }
+        })
+})
 //This is the right syntax for insert
 // connection.query("INSERT INTO user (FirstName, LastName, Username, email) VALUES ('Ricky', 'Bobby', 'ShakeNBake', 'ricky@bobby.com')")
 

@@ -1,0 +1,52 @@
+<% include ./partials/header %>
+<div class='panel panel-default'>
+<div class="panel-heading">Search results for</div>
+<table class='table'>
+    <tr>
+        <th>Activity</th>
+        <th class="fullsite">Description</th>
+        <th class="fullsite">Where</th>
+        <th>Days</th>
+        <th>Start Time</th>
+        <th class="fullsite">Duration</th>
+    </tr>
+    <% activities.forEach(function(activity){ %>
+        <tr>
+            <td><a href="/activity/<%=activity.ID%>"><%=activity.Title%></a></td>
+            <td class="fullsite"><%=activity.Description%></td>
+            <td class="fullsite"><%=activity.City%> <%=activity.State%></td>
+            <% var whatDays = []; %>
+                    <%if(activity.Sunday == 1){%>
+                    <% whatDays.push('Su'); %>
+                    <%}%>
+                    <%if(activity.Monday == 1){%>
+                    <% whatDays.push('Mo'); %>
+                    <%}%>
+                    <%if(activity.Tuesday == 1){%>
+                    <% whatDays.push('Tu'); %>
+                    <%}%>
+                    <%if(activity.Wednesday == 1){%>
+                    <% whatDays.push('We'); %>
+                    <%}%>
+                    <%if(activity.Thursday == 1){%>
+                    <% whatDays.push('Th'); %>
+                    <%}%>
+                    <%if(activity.Friday == 1){%>
+                    <% whatDays.push('Fr'); %>
+                    <%}%>
+                    <%if(activity.Saturday == 1){%>
+                    <% whatDays.push('Sa'); %>
+                    <%}%>
+                    
+            <td><%=whatDays%></td>
+
+            <td><%=moment(activity.StartTime, "HH:mm:ss").format('h:mma')%></td>
+            <td class="fullsite"><%=activity.Duration%></td>
+        </tr>
+        <%});%>
+    </table>
+
+    </div>
+
+
+    <% include ./partials/footer %>
