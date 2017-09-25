@@ -1,5 +1,7 @@
 <% include ../partials/header %>
 
+<div class='act-form col-lg-6 col-md-6 col-sm-6'>
+<h4>New Activity</h4>
 <form action="/activity" method="POST">
   <div class='form-group'>
     <label for="title">Title</label>
@@ -111,7 +113,9 @@
     <input class='form-control'type="number" name ="duration">
     </div>
 
-    <input type="submit">
+    <input class='btn btn-primary' type="submit">
 </form>
+<br>
+</div>
 
 <% include ../partials/footer %>

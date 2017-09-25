@@ -9,7 +9,7 @@ body, html {
     width: 100%;
 }
 .navbar, .navbar-default {
-    margin-bottom: 0px;
+    margin-bottom: 1em;
 }
 #homejumbotron {
     background-image: url('https://c1.staticflickr.com/9/8441/7876205694_65bff56473_b.jpg');
@@ -53,4 +53,17 @@ body, html {
         margin-left: auto;
         margin-right: auto;
     }
+}
+@media (max-width: 575px){
+    .act-form {
+        border: 0px;
+    }
+}
+@media (min-width: 576px) {
+
+.act-form {
+    border: 1px solid #e1e1e8;
+    border-radius: 4px;
+    margin: 0.5em;
+}
 }
