@@ -17,18 +17,49 @@
     <br>
 </div>
 
-<div class='panel panel-default' id='homepageresult'>
-<div class="panel-heading">Workouts near you:</div>
-<ul class='list-group'>
-      <% activities.forEach(function(activity){ %>
-            <a href="/activity/<%=activity.ID%>">
-              <li class='list-group-item'>
-              <%=activity.Title%> at 
-              <%=activity.City%> at 
-             <%=moment(activity.StartTime, "HH:mm:ss").format('h:mma')%>
-            </li></a>
-        </tr>
+<h3>Nearby Workouts:</h3>
+<hr/>
+<% activities.forEach(function(activity){ %>
+<a href="/activity/<%=activity.ID%>">
+    <div class='activity-preview col-xs-12 col-sm-5 col-md-3 col-lg-4'>
+        <p>
+        <%=activity.Title%> at 
+        <%=activity.City%>
+        </p>
+        <% if(activity.Date) { %>
+            <p><span class='label label-info'><%=activity.Date.toString().substr(4, 6)%></span></p>
+            <p></p><%=moment(activity.StartTime, "HH:mm:ss").format('h:mma')%></p>
+        <%} else {%>
+                <% var whatDays = []; %>
+                <%if(activity.Sunday == 1){%>
+                <% whatDays.push('Su'); %>
+                <%}%>
+                <%if(activity.Monday == 1){%>
+                <% whatDays.push('Mo'); %>
+                <%}%>
+                <%if(activity.Tuesday == 1){%>
+                <% whatDays.push('Tu'); %>
+                <%}%>
+                <%if(activity.Wednesday == 1){%>
+                <% whatDays.push('We'); %>
+                <%}%>
+                <%if(activity.Thursday == 1){%>
+                <% whatDays.push('Th'); %>
+                <%}%>
+                <%if(activity.Friday == 1){%>
+                <% whatDays.push('Fr'); %>
+                <%}%>
+                <%if(activity.Saturday == 1){%>
+                <% whatDays.push('Sa'); %>
+                <%}%>
+                <% for (var i=0; i < whatDays.length; i++){ %>
+                    <span class='label label-primary'><%=whatDays[i]%></span>
+                <%}%>
+
+            <p><%=moment(activity.StartTime, "HH:mm:ss").format('h:mma')%></p>
+        <%} %>
+
+    </div>
+</a>
         <%});%>
-      </ul>
-</div>
 <% include ./partials/footer %>

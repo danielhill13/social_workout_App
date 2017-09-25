@@ -3,11 +3,11 @@
 <div class="panel-heading">All Workouts</div>
 <table class='table'>
     <tr>
-        <th>Activity</th>
+        <th>What</th>
         <th class="fullsite">Description</th>
         <th class="fullsite">Where</th>
         <th>Days</th>
-        <th>Start Time</th>
+        <th>When</th>
         <th class="fullsite">Duration</th>
     </tr>
     <% activities.forEach(function(activity){ %>
@@ -38,7 +38,10 @@
                     <% whatDays.push('Sa'); %>
                     <%}%>
                     
-            <td><%=whatDays%></td>
+            <td>
+                <% for (var i=0; i < whatDays.length; i++){ %>
+                    <span class='label label-primary'><%=whatDays[i]%></span>
+                <%}%></td>
 
             <td><%=moment(activity.StartTime, "HH:mm:ss").format('h:mma')%></td>
             <td class="fullsite"><%=activity.Duration%></td>

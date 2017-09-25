@@ -58,12 +58,26 @@ body, html {
     .act-form {
         border: 0px;
     }
+    .activity-preview{
+
+    }
 }
 @media (min-width: 576px) {
 
-.act-form {
+.act-form{
     border: 1px solid #e1e1e8;
     border-radius: 4px;
+}
+}
+
+.act-form {
     margin: 0.5em;
 }
+.activity-preview {
+    margin: 0.5em;
+    padding: 0.3em;
+    border: 1px solid #e1e1e8;
+    border-radius: 4px;
+    max-width: 90%;
+    min-height: 6em;
 }
