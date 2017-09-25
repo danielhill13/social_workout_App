@@ -41,6 +41,7 @@ router.post('/', function(req, res){
                         city = req.body.city,
                         state = req.body.state,
                         zip = req.body.zip,
+                        date= req.body.date,
                         starttime = req.body.starttime,
                         duration = req.body.duration;
                 if (zip == ''){
@@ -70,8 +71,8 @@ router.post('/', function(req, res){
                 if(saturday == 'on'){
                         saturday = 1;
                 } else saturday= 0;
-                var freshActivity = [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration];
-                var newactivity = "INSERT INTO activity SET Title=?, Description=?, Address=?, City=?, State=?, Zip=?, Sunday=?, Monday=?, Tuesday=?, Wednesday=?, Thursday=?, Friday=?, Saturday=?, StartTime=?, Duration=?";
+                var freshActivity = [title, description, address, city, state, zip, date, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration];
+                var newactivity = "INSERT INTO activity SET Title=?, Description=?, Address=?, City=?, State=?, Zip=?, Date=?, Sunday=?, Monday=?, Tuesday=?, Wednesday=?, Thursday=?, Friday=?, Saturday=?, StartTime=?, Duration=?";
                 pool.query(newactivity, freshActivity, function(error, results, fields){
                         if (error) throw error;
                         res.redirect('/activity');      
@@ -127,6 +128,7 @@ router.put('/:id', function(req, res){
                         city = req.body.city,
                         state = req.body.state,
                         zip = req.body.zip,
+                        date = req.body.date,
                         starttime = req.body.starttime,
                         duration = req.body.duration;
                         if (zip == ''){
@@ -156,8 +158,8 @@ router.put('/:id', function(req, res){
                         if(saturday == 'on'){
                                 saturday = 1;
                         } else saturday= 0;
-                var freshActivity = [title, description, address, city, state, zip, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration];                
-                var updateQuery = "UPDATE activity SET Title = ?, Description = ?, Address = ?, City = ?, State = ?, Zip = ?, Sunday = ?, Monday = ?, Tuesday = ?, Wednesday = ?, Thursday = ?, Friday = ?, Saturday = ?, StartTime = ?, Duration = ? WHERE id = '"+req.params.id+"'";
+                var freshActivity = [title, description, address, city, state, zip, date, sunday, monday, tuesday, wednesday, thursday, friday, saturday, starttime, duration];                
+                var updateQuery = "UPDATE activity SET Title = ?, Description = ?, Address = ?, City = ?, State = ?, Zip = ?, Date=?, Sunday = ?, Monday = ?, Tuesday = ?, Wednesday = ?, Thursday = ?, Friday = ?, Saturday = ?, StartTime = ?, Duration = ? WHERE id = '"+req.params.id+"'";
 
                 pool.query(updateQuery, freshActivity, function(error, results, fields){
                         if (error) throw error;
